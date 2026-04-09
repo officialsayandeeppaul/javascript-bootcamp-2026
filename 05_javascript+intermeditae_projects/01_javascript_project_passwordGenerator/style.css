@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fb;
+    padding: 20px;
+}
+
+.container {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.04);
+    padding: 48px;
+    max-width: 480px;
+    width: 100%;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.header h1 {
+    color: #1a1a1a;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    background: #f5f6f8;
+    border-radius: 10px;
+    padding: 4px;
+    border: 1px solid #e3e5eb;
+    transition: all 0.2s ease;
+}
+
+.input-box:focus-within {
+    border-color: #3b3f4f;
+    box-shadow: 0 0 0 3px rgba(59, 63, 79, 0.06);
+    background: white;
+}
+
+#password {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #1a1a1a;
+    outline: none;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+#password::placeholder {
+    color: #9ca3af;
+}
+
+.input-box button {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+
+.input-box button:hover {
+    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.input-box button:active {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.material-symbols-outlined {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#message {
+    text-align: center;
+    margin-bottom: 36px;
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+#strength {
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 16px;
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+#strength.weak {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+#strength.medium {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+#strength.strong {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.generate-and-copy-container {
+    display: flex;
+    gap: 12px;
+}
+
+.generate,
+.copy {
+    flex: 1;
+}
+
+button.generate-btn,
+button.copy-btn {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
+button.generate-btn {
+    background: #3b3f4f;
+    color: white;
+    box-shadow: 0 2px 8px rgba(59, 63, 79, 0.12);
+}
+
+button.generate-btn:hover {
+    background: #2a2d3a;
+    box-shadow: 0 4px 16px rgba(59, 63, 79, 0.2);
+    transform: translateY(-1px);
+}
+
+button.generate-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0 8px rgba(59, 63, 79, 0.15);
+}
+
+button.copy-btn {
+    background: white;
+    color: #3b3f4f;
+    border: 1.5px solid #d4d8e3;
+    font-weight: 600;
+}
+
+button.copy-btn:hover {
+    background: #f5f6f8;
+    border-color: #3b3f4f;
+    box-shadow: 0 2px 8px rgba(59, 63, 79, 0.08);
+    transform: translateY(-1px);
+}
+
+button.copy-btn:active {
+    transform: translateY(0);
+    background: #f0f1f5;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 36px 24px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .header {
+        margin-bottom: 36px;
+    }
+
+    .input-box {
+        margin-bottom: 24px;
+    }
+
+    #message {
+        margin-bottom: 28px;
+    }
+
+    .generate-and-copy-container {
+        gap: 10px;
+    }
+
+    button.generate-btn,
+    button.copy-btn {
+        padding: 11px 16px;
+        font-size: 13px;
+    }
+}
+

@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3edf7;
+}
+
+.skill {
+    width: 10rem;
+    height: 10rem;
+    position: relative;
+}
+
+.outer {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 5px 5px 10px -1px rgba(0, 0, 0, 0.45); */
+}
+
+.inner {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 100%;
+    /* box-shadow: inset 5px 5px 5px -1px rgba(0, 0, 0, 0.5), inset -5px -5px 5px -1px rgba(255, 255, 255, 0.7), -0.5px -0.5px 0px rgba(255, 255, 255, 1); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.number{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+circle{
+    fill: none;
+    stroke:url('#myGradient');
+    stroke-dasharray: 25;
+    stroke-dashoffset: 25;
+    stroke-width: 1px;
+    transition: stroke-dashoffset 0.03s linear;
+}
+
+svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
