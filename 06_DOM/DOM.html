@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manupulation</title>
+  </head>
+  <body>
+    <div>
+      <h1 id="title" class="heading">
+        Hey this is DOM Series
+        <span style="display: none">I'm inside span</span>
+      </h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, eum
+        recusandae odio voluptates tempore unde odit rerum error quod sequi ex
+        consectetur laboriosam ratione provident ipsum! Adipisci distinctio
+        nulla vero.
+      </p>
+      <input type="password" name="" id="" />
+    </div>
+
+    <ul>
+      <li class="list-item" id="one">One</li>
+      <li class="list-item" id="two">Two</li>
+      <li class="list-item" id="three">Three</li>
+      <li class="list-item" id="four">Fourth</li>
+    </ul>
+
+    <ul>
+      <li class="list-item">A</li>
+      <li class="list-item">B</li>
+      <li class="list-item">C</li>
+      <li class="list-item">D</li>
+    </ul>
+
+    <div class="parent">
+      <div class="child" id="child1">Child 1</div>
+      <div class="child">Child 2</div>
+      <div class="child">Child 3</div>
+      <div class="child">Child 4</div>
+    </div>
+
+    <script>
+      const parent = document.querySelector(".parent");
+      console.log(parent);
+
+      const newChild = document.createElement("div");
+
+      newChild.setAttribute("class", "child");
+
+      newChild.innerText = "child 5";
+      console.log(newChild);
+
+      parent.appendChild(newChild);
+
+      const thirdChild = document.querySelector(".child:nth-child(3)");
+      console.log(thirdChild);
+      thirdChild.style.backgroundColor = "red";
+    </script>
+  </body>
+</html>

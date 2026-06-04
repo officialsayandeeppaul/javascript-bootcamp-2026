@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE ARCHIVE — Access Portal</title>
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Main Container -->
+    <main class="viewport-wrapper">
+        <!-- Split Panel Layout -->
+        <section class="split-layout" id="auth-panel">
+            
+            <!-- Left Side: Typographic/Editorial Panel -->
+            <div class="editorial-panel">
+                <div class="editorial-bg-pattern"></div>
+                <div class="editorial-header">
+                    <span class="editorial-tag">SYSTEM PORTAL v4.26</span>
+                    <span class="editorial-date" id="system-time">04.06.2026 23:35 UTC</span>
+                </div>
+                <div class="editorial-body">
+                    <h1 class="brand-title">THE<br>ARCHIVE</h1>
+                    <p class="brand-subtitle">Established 2026. A secure repository for refined digital assets, utilizing high-grade cryptography and micro-architectural protocols.</p>
+                </div>
+                <div class="editorial-footer">
+                    <div class="editorial-metric">
+                        <span class="metric-label">SECURED NODE</span>
+                        <span class="metric-val">LOCAL-STORAGE DB</span>
+                    </div>
+                    <div class="editorial-metric">
+                        <span class="metric-label">INTEGRITY CHECK</span>
+                        <span class="metric-val">SHA-256 MOCK</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Forms Container -->
+            <div class="form-panel">
+                <div class="form-panel-header">
+                    <div class="tab-trigger active" id="tab-login" onclick="switchForm('login')">01 / SIGN IN</div>
+                    <div class="tab-trigger" id="tab-register" onclick="switchForm('register')">02 / CREATE ACCOUNT</div>
+                </div>
+
+                <div class="form-wrapper">
+                    <!-- 1. SIGN IN FORM -->
+                    <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)" novalidate>
+                        <div class="form-intro">
+                            <h2>Welcome back</h2>
+                            <p>Verify your credentials to open the repository.</p>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" id="login-identifier" required placeholder=" " autocomplete="username">
+                            <label for="login-identifier">USERNAME OR EMAIL</label>
+                            <span class="input-line"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="login-password" required placeholder=" " autocomplete="current-password">
+                            <label for="login-password">PASSWORD</label>
+                            <span class="input-line"></span>
+                            <button type="button" class="password-toggle" onclick="togglePasswordVisibility('login-password')" aria-label="Toggle password visibility">
+                                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="login-remember">
+                                <span class="checkbox-box"></span>
+                                <span class="checkbox-label">Keep session active</span>
+                            </label>
+                            <a href="#" class="forgot-link" onclick="triggerForgotPassword()">Forgot Credentials?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sharp">
+                            <span class="btn-text">INITIALIZE SESSION</span>
+                            <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- 2. REGISTER FORM -->
+                    <form id="register-form" class="auth-form" onsubmit="handleRegister(event)" novalidate>
+                        <div class="form-intro">
+                            <h2>Join the Archive</h2>
+                            <p>Register a new cryptographic access key.</p>
+                        </div>
+
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <input type="text" id="reg-fullname" required placeholder=" ">
+                                <label for="reg-fullname">FULL NAME</label>
+                                <span class="input-line"></span>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" id="reg-username" required placeholder=" " autocomplete="username">
+                                <label for="reg-username">USERNAME</label>
+                                <span class="input-line"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" id="reg-email" required placeholder=" " autocomplete="email">
+                            <label for="reg-email">EMAIL ADDRESS</label>
+                            <span class="input-line"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="reg-password" required placeholder=" " autocomplete="new-password" oninput="checkPasswordStrength(this.value)">
+                            <label for="reg-password">SECURE PASSWORD</label>
+                            <span class="input-line"></span>
+                            <button type="button" class="password-toggle" onclick="togglePasswordVisibility('reg-password')" aria-label="Toggle password visibility">
+                                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                            <!-- Password Strength Indicator -->
+                            <div class="strength-meter">
+                                <div class="strength-bar" id="bar-1"></div>
+                                <div class="strength-bar" id="bar-2"></div>
+                                <div class="strength-bar" id="bar-3"></div>
+                                <div class="strength-bar" id="bar-4"></div>
+                                <span class="strength-text" id="strength-label">CRITICALLY WEAK</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="reg-confirm-password" required placeholder=" " autocomplete="new-password">
+                            <label for="reg-confirm-password">CONFIRM KEY</label>
+                            <span class="input-line"></span>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="reg-terms" required>
+                                <span class="checkbox-box"></span>
+                                <span class="checkbox-label">I accept the terms of data custody & node protocols.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sharp">
+                            <span class="btn-text">CREATE CREDENTIALS</span>
+                            <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Post-Login Dashboard -->
+        <section class="dashboard-panel" id="dashboard-panel" style="display: none;">
+            <header class="dash-header">
+                <div class="brand-tag">
+                    <span class="brand-dot"></span> THE ARCHIVE / DATA ROOM
+                </div>
+                <div class="dash-user-profile">
+                    <span class="dash-user-badge" id="dash-user-initials">U</span>
+                    <div class="user-meta">
+                        <span class="user-fullname" id="dash-fullname">Loading User...</span>
+                        <span class="user-role">Access Status: Authorized</span>
+                    </div>
+                </div>
+                <button class="btn-logout" onclick="handleLogout()" aria-label="Log out of session">
+                    <span>CLOSE SESSION</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" class="logout-icon" viewBox="0 0 24 24">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </button>
+            </header>
+
+            <div class="dash-grid">
+                <!-- Welcome & Node Info Card -->
+                <div class="dash-card card-large">
+                    <div class="card-tag">SECURE ACCESS GRANTED</div>
+                    <h2 class="dash-greeting">Welcome Back, <span class="highlight-text" id="dash-greeting-name">User</span>.</h2>
+                    <p class="dash-desc">Your node connection has been successfully established. All activities within this directory are logged locally under your authenticated profile session. Feel free to manage your credentials or inspect local node parameters below.</p>
+                    
+                    <div class="details-grid">
+                        <div class="detail-box">
+                            <span class="label">ASSIGNED UUID</span>
+                            <span class="val" id="dash-uuid">ARCHIVE-9B1D-4E2A</span>
+                        </div>
+                        <div class="detail-box">
+                            <span class="label">NODE REGISTERED</span>
+                            <span class="val" id="dash-created">2026-06-04 23:35</span>
+                        </div>
+                        <div class="detail-box">
+                            <span class="label">PORTAL ALIAS</span>
+                            <span class="val" id="dash-username">@username</span>
+                        </div>
+                        <div class="detail-box">
+                            <span class="label">REGISTERED EMAIL</span>
+                            <span class="val" id="dash-email">email@archive.org</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session Stats & Actions Card -->
+                <div class="dash-card">
+                    <div class="card-tag">SECURITY PARADIGMS</div>
+                    <h3>Node Integrity Tools</h3>
+                    <p class="small-desc">Manage files, wipe local cache, or generate self-destruct tokens.</p>
+                    
+                    <div class="action-buttons-list">
+                        <button class="btn-secondary" onclick="simulateSecretKeyRotation()">
+                            <span>ROTATE TOKEN KEY</span>
+                        </button>
+                        <button class="btn-secondary btn-danger" onclick="wipeLocalRegistry()">
+                            <span>WIPE STORAGE REGISTRY</span>
+                        </button>
+                    </div>
+
+                    <div class="stat-footer-metrics">
+                        <div class="metric-item">
+                            <span class="m-val">256-BIT</span>
+                            <span class="m-lbl">MOCK ENCRYPTION</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="m-val" id="total-users-stat">1</span>
+                            <span class="m-lbl">TOTAL LOGGED USERS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session Access Log -->
+                <div class="dash-card card-full-width">
+                    <div class="card-tag">SESSION ACTIVITY LOGS (TEMPORARY SESSIONS)</div>
+                    <div class="table-container">
+                        <table class="logs-table">
+                            <thead>
+                                <tr>
+                                    <th>EVENT TIME</th>
+                                    <th>EVENT NAME</th>
+                                    <th>STATUS</th>
+                                    <th>ORIGIN</th>
+                                    <th>SIGNATURE hash</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logs-tbody">
+                                <tr>
+                                    <td class="mono">2026-06-04 23:35:10</td>
+                                    <td>USER_AUTHENTICATION_INITIALIZED</td>
+                                    <td><span class="badge badge-success">SUCCESS</span></td>
+                                    <td class="mono">LOCAL_AGENT</td>
+                                    <td class="mono">5e884898da28...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
