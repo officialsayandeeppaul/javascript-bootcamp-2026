@@ -32,6 +32,47 @@ document.addEventListener("DOMContentLoaded", function () {
     updateDisplay();
   }
 
+  // 5 + 10.5
+  // previousInput = 5
+  // currentInput = 10.5
+
+  function performCalculation() {
+    const num1 = parseFloat(previousInput);
+    const num2 = parseFloat(currentInput);
+
+    //      F                F
+    //      T                T
+
+    // input1   input2      output
+    //   T        F           F
+    //   F        T           F
+    //   F        F           F
+    //   T        T           T
+
+    //     true            true
+    if (!isNaN(num1) && !isNaN(num2)) {
+      switch (operator) {
+        case "+":
+          currentInput = (num1 + num2).toString();
+          break;
+        case "-":
+          currentInput = (num1 - num2).toString();
+          break;
+        case "*":
+          currentInput = (num1 * num2).toString();
+          break;
+        case "/":
+          currentInput = (num1 / num2).toString();
+          break;
+
+        default:
+          console.log("Invalid Operator");
+          break;
+      }
+    }
+    operator = "";
+  }
+
   function handleOperator(op) {
     if (operator && currentInput) {
       performCalculation();
